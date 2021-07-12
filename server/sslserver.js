@@ -21,7 +21,7 @@ app.use(cors());
 // 파일 업로드 Storage
 const uploadStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "../client/examFile/")
+        cb(null, "'../client/examFile/")
     },
     filename: (req, file, cb) => {
         let jsonData = JSON.parse(req.body.jsonData);
