@@ -1,0 +1,23 @@
+/* 전체 컨테이너 */
+.loginContainer{
+    max-width: 200px;
+    border: 1px solid black;
+    padding: 15px;
+    margin: 0 auto;
+}
+
+/* 버튼 영역 */
+.BtnArea{
+    display: flex;
+    flex-direction: row;
+}
+
+/* 회원가입 버튼영역 */
+.newUserBtnArea{
+    width: 50%;
+}
+
+/* 모든 버튼 */
+button {
+    cursor: pointer;
+}

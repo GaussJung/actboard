@@ -1,0 +1,54 @@
+.requisite {
+    color: red;
+}
+
+/* 게시글 작성의 영역*/
+#container {
+    max-width: 1200px;
+    min-width: 300px;
+    border: 1px solid black;
+    min-height: 500px;
+    margin: 0 auto;
+}
+
+/* 게시글 작성의 모든 div 영역*/
+#container div {
+    padding: 5px 15px 5px 15px;
+    height: 20%;
+}
+
+/* 게시글 작성 버튼 영역*/
+#submitButtonArea {
+    text-align: right;
+    padding: 30px;
+    height: 20%;
+}
+
+/* 등록페이지 헤더 영역 */
+.containerHeaderArea {
+    padding-left: 15px;
+    display: flex;
+    flex-direction: row;
+}
+
+/* 등록페이지 헤더의 글 */
+.containerHeaderText {
+    width: 95%;
+}
+
+/* 등록페이지 헤더의 버튼 */
+.containerHeaderBtn {
+    max-height: 30px;
+    align-self: center;
+}
+
+/* 모든 버튼 */
+button {
+    width: 120px;
+    cursor: pointer;
+}
+
+/* 모든 input */
+.typeInput {
+    width: 200px;
+}
