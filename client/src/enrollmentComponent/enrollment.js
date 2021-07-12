@@ -60,7 +60,7 @@ const Enrollment = () => {
           data: formData,
           success: function (examid) {
             localStorage.setItem("enrollment", JSON.stringify(data));
-            document.location.href = '/enrollmentCheck/'+examid;
+            document.location.href = '/';
           },
         });
       }
