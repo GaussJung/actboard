@@ -5,7 +5,6 @@ import "./enrollment.css";
 import {CheckData} from "./enrollmentFunc";
 import { CompleteLogin } from '../api'
 window.$ = window.jQuery = jQuery;
-
 const Enrollment = () => {
 
   const [data, setData] = useState({});
