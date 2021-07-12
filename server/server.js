@@ -195,7 +195,7 @@ app.post('/enrollment',upload, (req,res) =>{
 });
 
 // 저장된 파일 다운로드
-app.get('/examFile/:path',(req,res) => {
+app.get('/client/examFile/:path',(req,res) => {
     console.log(req.params.path);
     res.download("../client/examFile/"+req.params.path);
 })
