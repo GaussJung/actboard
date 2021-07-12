@@ -4,7 +4,8 @@ module.exports = {
             "name" : "actboard",
             "script" : "npm run dev",
             "args" : "start",
-            "watch" : true
+            "watch" : true,
+            "exec_mode": 'cluster'
         }
     ]
 }
