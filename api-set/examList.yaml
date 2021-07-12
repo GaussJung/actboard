@@ -1,0 +1,62 @@
+---
+paths: 
+  "/list":
+    post:
+      tags:
+      - exam
+      description: View Member get
+      parameters:
+      - name: grade
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: search grade data
+      - name: subject
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: search subject data
+      - name: teacher
+        in: query
+        required: false
+        schema:
+          type: integer
+        description: search grade data
+      produces:
+      - application/json
+      responses:
+        '200':
+          success: Whether or not to success
+          count: member count to be requested
+          chcode: application api process code
+          rowset: member row from database
+    get:
+      tags:
+      - exam
+      description: View Member Post
+      parameters:
+      - in: body
+        name: data
+        description: json object to request member
+        required: false
+        schema:
+          "$ref": "#/definitions/examlist"
+      produces:
+      - application/json
+      responses:
+        '200':
+          success: Whether or not to success
+          count: member count to be requested
+          chcode: application api process code
+          rowset: member row from database
+definitions:
+  examlist:
+    properties:
+      grade:
+        type: String
+      subject:
+        type: String
+      teacher:
+        type: String 
