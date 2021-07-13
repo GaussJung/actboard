@@ -1,8 +1,8 @@
 module.exports = {
     "apps": [
         {
-            "name" : "node_modules/.bin/react-scripts start",
-            "script" : "npm",
+            "name" : "actboard_client",
+            "script" : "node_modules/.bin/react-scripts start",
             "args" : "start",
             "watch" : true,
             "exec_mode": 'cluster'
