@@ -7,6 +7,13 @@ export const GetDbData = async () => {
   return dbList;
 };
 
+// 사용자 목록 데이터
+export const GetUserList = async () => {
+  const dbList = await axios.get("/userList").then((res) => res.data);
+
+  return dbList;
+};
+
 // 로그인상태일 경우 정보 저장
 export const CompleteLogin = async () => {
   const dbList = await axios.get("/completelogin").then((res) => res.data);

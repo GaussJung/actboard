@@ -161,6 +161,19 @@ app.post('/api/list', (req, res) => {
     });
 });
 
+//
+app.get('/userList',(req, res) => {
+    let selectSqlBody = "SELECT userno, name, createdate FROM react_user_list";
+
+    dbConnection.query(selectSqlBody,(err,userList) => {
+        if(err){
+            res.send(false)
+        }else{
+            res.send(userList);
+        }
+    })
+})
+
 // 사용자 시험 등록 
 app.post('/enrollment',upload, (req,res) =>{
 
@@ -203,7 +216,7 @@ app.get('/client/examFile/:path',(req,res) => {
 // 아이디 중복체크
 app.post('/getUserId',(req,res) => {
 
-    let selectSqlbody = "SELECT userid FROM user_list WHERE userid=?";
+    let selectSqlbody = "SELECT userid FROM react_user_list WHERE userid=?";
     dbConnection.query(selectSqlbody, req.body.id,(err,data) => {
         if(err){
             res.send(err);
@@ -221,7 +234,7 @@ app.post('/newUser', (req,res) => {
 
     let data = req.body.data;
 
-    const insertSqlbody = `INSERT INTO user_list VALUES(default,?,?,HEX(AES_ENCRYPT( ?,concat('soy', ?))),?,now(),now(),now())`; // 사용자의 정보중 비밀번호를 암호화하여 db에 저장
+    const insertSqlbody = `INSERT INTO react_user_list VALUES(default,?,?,HEX(AES_ENCRYPT( ?,concat('soy', ?))),?,now(),now(),now())`; // 사용자의 정보중 비밀번호를 암호화하여 db에 저장
     const paramsVal = [data.name, data.id, data.passwd, data.id, data.grade];
 
     dbConnection.query(insertSqlbody, paramsVal, (err, get) => {
@@ -238,7 +251,7 @@ app.post('/newUser', (req,res) => {
 
 // 로그인을 이뤄주는 경로
 app.post('/loginprocess', async (req, res) => {
-    const selectSqlbody = "SELECT * FROM user_list WHERE userid=? AND passwd = HEX(AES_ENCRYPT( ? , concat('soy',?)))";
+    const selectSqlbody = "SELECT * FROM react_user_list WHERE userid=? AND passwd = HEX(AES_ENCRYPT( ? , concat('soy',?)))";
     let paramsVal = [req.body.userid, req.body.userpw, req.body.userid];
 
     dbConnection.query(selectSqlbody, paramsVal, async (err, get) => {
@@ -314,7 +327,7 @@ const swagOptions = {
   // import swaggerDefinitions
   swaggerDefinition,
   // path to the API docs
-  apis: ['../api-set/*.yaml'],
+  apis: ['./api-set/*.yaml'],
 };
 
 // 초기화 swagger-jsdoc
