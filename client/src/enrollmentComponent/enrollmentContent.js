@@ -8,7 +8,6 @@ const EnrollmentContent = (props) => {
     const [grade, setGrade] = useState("");
     const [subject, setSubject] = useState();
 
-    console.log(props)
   return (
       <>
       <div id="formContent">

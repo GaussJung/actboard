@@ -19,16 +19,16 @@ export const LoginPage = () => {
         document.location.href = "/";
       }else{
         alert("로그인 실패.")
-      }
-    })
-  }
+      };
+    });
+  };
 
   // 엔터키를 누를경우 로그인
   const EnterKey = (e) =>{
     if(e.keyCode === 13){
       LoginProcess();
-    }
-  }
+    };
+  };
 
   return (
     <div className="loginContainer">

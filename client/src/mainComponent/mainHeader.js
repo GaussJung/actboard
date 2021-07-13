@@ -2,8 +2,7 @@ import axios from "axios";
 import React from "react";
 import { Link } from "react-router-dom";
 
-const MainHeader = (loginInfo) => {
-
+const MainHeader = (props) => {
   // 로그인이 필요한 경우 실행
   const AlertLogin = () => {
     alert("로그인후 이용 가능합니다.");
@@ -12,7 +11,7 @@ const MainHeader = (loginInfo) => {
 
   // 로그아웃
   const Logout = () => {
-      let logounCheck = window.confirm("로그아웃 하시겠습니까?");
+    let logounCheck = window.confirm("로그아웃 하시겠습니까?");
     if (logounCheck) {
       axios.get("/logoutprocess").then((res) => {
         alert("로그아웃 완료.");
@@ -23,7 +22,7 @@ const MainHeader = (loginInfo) => {
 
   return (
     <>
-      {loginInfo.loginInfo === false ? (
+      {props.loginInfo === false ? (
         <>
           <div className="loginBtnArea">
             <Link to="/login">

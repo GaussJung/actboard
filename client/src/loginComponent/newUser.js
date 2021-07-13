@@ -47,11 +47,11 @@ export const NewUser = () => {
             }
           } else {
             alert("중복된 아이디 입니다.");
-          }
+          };
         });
     } else {
       alert("아이디를 다시 입력하세요");
-    }
+    };
   };
 
   // 신규 회원 생성 함수 -----------------------------------------------------------------------------------------
@@ -67,13 +67,13 @@ export const NewUser = () => {
                 document.location.replace('/login');
             }else{
                 alert("회원가입 실패..");
-            }
-        })
-        }
+            };
+        });
+        };
       } else {
         alert("중복 체크를 해주세요.");
-      }
-    }
+      };
+    };
 
   return (
     <div class="newUSerContainer">
@@ -181,46 +181,3 @@ export const NewUser = () => {
 };
 
 export default NewUser;
-// let loginCheckBool = false; // 증복확인 했는지 확인.
-
-// const gradeSel = document.getElementById("gradeSel"); // 학년 선택시 값 변경
-
-// gradeSel.addEventListener("change", (event) => {
-//   const newUserGrade = document.getElementById("newUserGrade");
-//   newUserGrade.value = event.target.value;
-// });
-
-// // id 중복체크 -------------------------------------------------------------------------------------
-// const sameIdCheck = () => {
-//   const newUserId = document.getElementById("newUserId");
-//   let idCheck = /^[A-Za-z0-9!@#$%^&*]{3,19}$/;
-
-//   let newUserIdVal = newUserId.value;
-
-//   if (
-//     newUserIdVal !== "" &&
-//     newUserIdVal !== null &&
-//     newUserIdVal !== undefined &&
-//     idCheck.test(newUserIdVal) === true
-//   ) {
-//     fetch("/enrollment/user/getUserList", {
-//       method: "post",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({
-//         id: newUserIdVal,
-//       }),
-//     }).then((res) => {
-//       if (res.status === 200) {
-//         alert("사용 가능합니다.");
-//         loginCheckBool = true;
-//         newUserId.disabled = true;
-//       } else {
-//         alert("이미 생성된 아이디 입니다.");
-//       }
-//     });
-//   } else {
-//     alert("아이디를 다시 입력 해주세요.");
-//   }
-// };

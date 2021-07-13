@@ -55,6 +55,7 @@ export default function Main() {
   useEffect(() => {
     DbList();
   }, []);
+
   return (
     <>
       {loading === true ? (
@@ -64,10 +65,9 @@ export default function Main() {
             onClick={(e) => {
               ShowModal();
             }}
-
-            onKeyDown={((e) =>{
-              console.log(e.key)
-            })}
+            onKeyDown={(e) => {
+              console.log(e.key);
+            }}
           >
             <div className="userListModal">
               <h3 className="modalTitle">사용자 목록</h3>

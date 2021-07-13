@@ -13,7 +13,7 @@ export const CheckData = (data, samePw) => {
         return false;
       } else {
         data.name = tmpVal;
-      }
+      };
 
       // 비밀번호 조건
       tmpVal = data.passwd;
@@ -22,7 +22,7 @@ export const CheckData = (data, samePw) => {
         return false;
       } else {
         data.passwd = tmpVal;
-      }
+      };
 
       // 비밀번호 재입력 확인
       tmpVal2 = samePw;
@@ -30,17 +30,17 @@ export const CheckData = (data, samePw) => {
       if (tmpVal !== tmpVal2) {
         alert("확인란의 비밀번호가 같지 않습니다.");
         return false;
-      }
+      };
 
       tmpVal = data.grade;
       if (tmpVal === "" || tmpVal === undefined || tmpVal === null) {
         alert("담당 학년을 선택해주세요.");
         return false;
-      }
+      };
 
       return true;
     }else{
         return alert("양식에 맞게 하세요!")
-    }
+    };
   };
 

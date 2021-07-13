@@ -1,7 +1,7 @@
 module.exports = {
     "apps": [
         {
-            "name" : "actboard_client",
+            "name" : "node_modules/.bin/react-scripts start",
             "script" : "npm",
             "args" : "start",
             "watch" : true,
