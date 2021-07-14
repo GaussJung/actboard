@@ -56,12 +56,6 @@ app.use(session({
     }
 }));
 
-app.get('/',(req,res) => {
-    console.log("err")
-    res.send("hello");
-})
-
-
 // 메인화면
 app.get('/api/list', (req, res) => {
 
@@ -348,6 +342,7 @@ const swaggerSpec = swaggerJSDoc(swagOptions);
 // use swagger-Ui-express for your app documentation endpoint
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
+console.log(swaggerUi.serve)
 
 const port = 8000;
 app.listen(port,()=> console.log(`you join ${port}!`));
