@@ -1,8 +1,19 @@
 import axios from "axios";
 
+let apiServer = "";
+const currentUrl = document.location.href;
+
+if (currentUrl.indexOf("localhost") > -1) {
+  apiServer = "http://localhost:8000";
+} else {
+  apiServer = "http://utdev.soymlops.com:8000";
+}
+
 // 목록화면의 데이터 수집
 export const GetDbData = async () => {
-  const dbList = await axios.get("/api/list").then((res) => res.data);
+  const dbList = await axios
+    .get(apiServer + "/api/list")
+    .then((res) => res.data);
 
   return dbList;
 };
@@ -20,4 +31,3 @@ export const CompleteLogin = async () => {
 
   return dbList;
 };
-

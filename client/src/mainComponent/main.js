@@ -13,6 +13,7 @@ export default function Main() {
   const [loading, setLoading] = useState(false); // db에서 데이터를 받을동안 로딩
   const [loginStatus, setLoginStatus] = useState(); // 사용자가 로그인을 하였는지 확인
 
+
   // db불러오기
   async function DbList() {
     const datas = await GetDbData();
