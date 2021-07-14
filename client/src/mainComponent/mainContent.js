@@ -17,7 +17,10 @@ const MainContent = (props) => {
       .get(`/${props.data.filepath}`, { responseType: "blob" })
       .then((res) => {
         download(res.data, props.data.filename, props.data.filetype);
-      });
+      }).catch(err => {
+        console.log(err);
+        alert("파일이 존재 하지 않습니다.");
+      })
   };
 
   return (
