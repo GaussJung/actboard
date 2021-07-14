@@ -14,7 +14,7 @@ const userRouter = require("./routes/user"); // 사용자 질문,답변 페이�
 app.use("/api/exam", examRouter); // 시험 목록, 시험등록 등 라우터
 app.use("/api/user", userRouter); // 사용자 로그인, 회원가입, 로그아웃, 목록 라우터
 
-app.use(cors({origin : "http://utdev.soymlops.com:5000"}));
+app.use(cors({origin : "http://localhost:5000"}));
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
@@ -54,7 +54,7 @@ const swaggerDefinition = {
       }
   },
   //host: 'myapp.nuriblock.com:80', // the host or url of the app
-  host: 'utdev.soymlops.com:8000', // the host or url of the app
+  host: 'localhost:8000', // the host or url of the app
   basePath: '/api', // the basepath of your endpoint
   schemes:'http',   // SSL접속 아닌 기본 접속 
   consumes:'application/json',

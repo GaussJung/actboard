@@ -52,7 +52,7 @@ const Enrollment = () => {
         formData.append("files", file);
 
         window.$.ajax({
-          url: "/enrollment",
+          url: "/api/exam/enrollment",
           type: "POST",
           //async: true,
           //cache: false,

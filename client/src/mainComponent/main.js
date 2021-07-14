@@ -35,7 +35,7 @@ export default function Main() {
 
     const datas = axios
       .post(
-        `/api/list?grade=${gradeVal}&subject=${subjectVal}&teacher=${teacherVal}`
+        `/api/exam/list?grade=${gradeVal}&subject=${subjectVal}&teacher=${teacherVal}`
       )
       .then((res) => setData(res.data));
   };

@@ -14,7 +14,7 @@ const MainContent = (props) => {
   const FileDownload = () => {
     console.log(props.data.filepath);
     axios
-      .get(`/${props.data.filepath}`, { responseType: "blob" })
+      .get(`/api/exam/${props.data.filepath}`, { responseType: "blob" })
       .then((res) => {
         download(res.data, props.data.filename, props.data.filetype);
       }).catch(err => {
