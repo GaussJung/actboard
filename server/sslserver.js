@@ -321,7 +321,7 @@ const swaggerDefinition = {
       }
   },
   //host: 'myapp.nuriblock.com:80', // the host or url of the app
-  host: 'http://utdev.soymlops.com:8000', // the host or url of the app
+  host: 'utdev.soymlops.com:8000', // the host or url of the app
   basePath: '/api', // the basepath of your endpoint
   schemes:'http',   // SSL접속 아닌 기본 접속 
   consumes:'application/json',
