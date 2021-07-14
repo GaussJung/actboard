@@ -320,7 +320,7 @@ const swaggerDefinition = {
         url: 'https://opensource.org/licenses/MIT'
       }
   },
-  host: 'utdev.soymlops.com:8000', // the host or url of the app
+  host: 'utdev.soymlops.com:8001', // the host or url of the app
   basePath: '/api', // the basepath of your endpoint
   schemes:'http',   // SSL접속 아닌 기본 접속 
   consumes:'application/json',
