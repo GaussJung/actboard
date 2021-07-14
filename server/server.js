@@ -1,3 +1,9 @@
+/*
+    품명 : ACTBOARD
+    version : 1.1
+*/
+
+
 const express = require('express');
 const app = express('');
 const session = require('express-session'); //session(세션) 사용
