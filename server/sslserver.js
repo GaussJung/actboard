@@ -56,6 +56,10 @@ app.use(session({
     }
 }));
 
+app.get('/',(req,res) => {
+    res.send("<h1>test v0.01</h1>");
+});
+
 // 메인화면
 app.get('/api/list', (req, res) => {
 
@@ -320,7 +324,7 @@ const swaggerDefinition = {
         url: 'https://opensource.org/licenses/MIT'
       }
   },
-  host: 'utdev.soymlops.com:8001', // the host or url of the app
+  host: 'utdev.soymlops.com:8000', // the host or url of the app
   basePath: '/api', // the basepath of your endpoint
   schemes:'http',   // SSL접속 아닌 기본 접속 
   consumes:'application/json',
@@ -342,5 +346,5 @@ const swaggerSpec = swaggerJSDoc(swagOptions);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
-app.listen(8001,()=> console.log(`you join 8001!`));
+app.listen(8001,()=> console.log(`you join 8000!`));
 
