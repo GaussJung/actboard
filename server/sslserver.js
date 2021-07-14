@@ -320,7 +320,6 @@ const swaggerDefinition = {
         url: 'https://opensource.org/licenses/MIT'
       }
   },
-  //host: 'myapp.nuriblock.com:80', // the host or url of the app
   host: 'utdev.soymlops.com:8000', // the host or url of the app
   basePath: '/api', // the basepath of your endpoint
   schemes:'http',   // SSL접속 아닌 기본 접속 
@@ -342,6 +341,6 @@ const swaggerSpec = swaggerJSDoc(swagOptions);
 // use swagger-Ui-express for your app documentation endpoint
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-const port = 8000;
-app.listen(port,()=> console.log(`you join ${port}!`));
+
+app.listen(8001,()=> console.log(`you join 8001!`));
 
