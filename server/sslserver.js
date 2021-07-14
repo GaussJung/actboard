@@ -349,5 +349,5 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
 const port = 8000;
-app.listen(port,()=> console.log(`Thank you join ${port}!`));
+app.listen(port,()=> console.log(`you join ${port}!`));
 
