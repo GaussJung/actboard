@@ -57,7 +57,8 @@ app.use(session({
 }));
 
 app.get('/',(req,res) => {
-    res.send("<h1>heelo</h1>");
+    console.log("err")
+    res.send("hello");
 })
 
 
