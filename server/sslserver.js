@@ -3,8 +3,9 @@
     version : 1.1
 */
 
+
 const express = require('express');
-const app = express('');
+const app = express();
 const session = require('express-session'); //session(세션) 사용
 const multer = require('multer');   // multer(파일 업로드) 사용.
 const cors = require('cors');   // cors(proxy 방지)사용
@@ -26,7 +27,7 @@ app.use(cors());
 // 파일 업로드 Storage
 const uploadStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "'../client/examFile/")
+        cb(null, "../client/examFile/")
     },
     filename: (req, file, cb) => {
         let jsonData = JSON.parse(req.body.jsonData);
@@ -166,6 +167,19 @@ app.post('/api/list', (req, res) => {
     });
 });
 
+//
+app.get('/userList',(req, res) => {
+    let selectSqlBody = "SELECT userno, name, createdate FROM react_user_list";
+
+    dbConnection.query(selectSqlBody,(err,userList) => {
+        if(err){
+            res.send(false)
+        }else{
+            res.send(userList);
+        }
+    })
+})
+
 // 사용자 시험 등록 
 app.post('/enrollment',upload, (req,res) =>{
 
@@ -200,15 +214,15 @@ app.post('/enrollment',upload, (req,res) =>{
 });
 
 // 저장된 파일 다운로드
-app.get('/examFile/:path',(req,res) => {
+app.get('/client/examFile/:path',(req,res) => {
     console.log(req.params.path);
-    res.download("../examFile/"+req.params.path);
+    res.download("../client/examFile/"+req.params.path);
 })
 
 // 아이디 중복체크
 app.post('/getUserId',(req,res) => {
 
-    let selectSqlbody = "SELECT userid FROM user_list WHERE userid=?";
+    let selectSqlbody = "SELECT userid FROM react_user_list WHERE userid=?";
     dbConnection.query(selectSqlbody, req.body.id,(err,data) => {
         if(err){
             res.send(err);
@@ -226,7 +240,7 @@ app.post('/newUser', (req,res) => {
 
     let data = req.body.data;
 
-    const insertSqlbody = `INSERT INTO user_list VALUES(default,?,?,HEX(AES_ENCRYPT( ?,concat('soy', ?))),?,now(),now(),now())`; // 사용자의 정보중 비밀번호를 암호화하여 db에 저장
+    const insertSqlbody = `INSERT INTO react_user_list VALUES(default,?,?,HEX(AES_ENCRYPT( ?,concat('soy', ?))),?,now(),now(),now())`; // 사용자의 정보중 비밀번호를 암호화하여 db에 저장
     const paramsVal = [data.name, data.id, data.passwd, data.id, data.grade];
 
     dbConnection.query(insertSqlbody, paramsVal, (err, get) => {
@@ -243,7 +257,7 @@ app.post('/newUser', (req,res) => {
 
 // 로그인을 이뤄주는 경로
 app.post('/loginprocess', async (req, res) => {
-    const selectSqlbody = "SELECT * FROM user_list WHERE userid=? AND passwd = HEX(AES_ENCRYPT( ? , concat('soy',?)))";
+    const selectSqlbody = "SELECT * FROM react_user_list WHERE userid=? AND passwd = HEX(AES_ENCRYPT( ? , concat('soy',?)))";
     let paramsVal = [req.body.userid, req.body.userpw, req.body.userid];
 
     dbConnection.query(selectSqlbody, paramsVal, async (err, get) => {
@@ -307,7 +321,7 @@ const swaggerDefinition = {
       }
   },
   //host: 'myapp.nuriblock.com:80', // the host or url of the app
-  host: 'localhost:8000', // the host or url of the app
+  host: 'http://utdev.soymlops.com:8000', // the host or url of the app
   basePath: '/api', // the basepath of your endpoint
   schemes:'http',   // SSL접속 아닌 기본 접속 
   consumes:'application/json',
@@ -319,7 +333,7 @@ const swagOptions = {
   // import swaggerDefinitions
   swaggerDefinition,
   // path to the API docs
-  apis: ['../api-set/*.yaml'],
+  apis: ['./api-set/*.yaml'],
 };
 
 // 초기화 swagger-jsdoc

@@ -5,7 +5,7 @@
 
 
 const express = require('express');
-const app = express('');
+const app = express();
 const session = require('express-session'); //session(세션) 사용
 const multer = require('multer');   // multer(파일 업로드) 사용.
 const cors = require('cors');   // cors(proxy 방지)사용
