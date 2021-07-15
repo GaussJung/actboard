@@ -5,19 +5,26 @@
 
 const express = require('express');
 const app = express();
-const session = require('express-session'); //session(세션) 사용
 const cors = require('cors');   // cors(proxy 방지)사용
 
 // 로그인 세션 설정
-app.use(session({
-  key: 'sid',
-  secret: 'secret',
-  resave: false,
-  saveUninitialized: true,
-  cookie: {
-      maxAge: 24000 * 60 * 60 // 쿠키 유효기간 24시간
-  }
-}));
+const redis = require("redis");
+const session = require("express-session");
+
+let RedisStore = require("connect-redis")(session);
+let redisClient = redis.createClient();
+
+app.use(
+  session({
+    store: new RedisStore({ client: redisClient }),
+    saveUninitialized: false,
+    secret: "keyboard cat",
+    resave: false,
+    cookie: {
+      maxAge: 24000 * 60 * 60, // 쿠키 유효기간 24시간
+    },
+  })
+);
 
 app.use(cors());
 app.use(express.json())
