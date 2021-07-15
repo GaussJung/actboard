@@ -3,11 +3,10 @@ const app = express.Router();
 const multer = require('multer');   // multer(파일 업로드) 사용.
 
 const dbConnection = require('../database/databases');
-
 // 파일 업로드 Storage
 const uploadStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, "../client/examFile/")
+        cb(null, '../examFile/')
     },
     filename: (req, file, cb) => {
         let jsonData = JSON.parse(req.body.jsonData);
@@ -165,11 +164,9 @@ app.post('/enrollment',upload, (req,res) =>{
         };
     });
 });
-
 // 저장된 파일 다운로드
-app.get('/client/examFile/:path',(req,res) => {
-    console.log(req.params.path);
-    res.download("../client/examFile/"+req.params.path);
+app.get('/examFile/:path',(req,res) => {
+    res.download("../examFile/"+req.params.path);
 })
 
 module.exports = app;

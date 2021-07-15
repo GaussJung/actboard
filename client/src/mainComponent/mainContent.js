@@ -12,15 +12,17 @@ const MainContent = (props) => {
 
   // 저장된 파일을 다운로드
   const FileDownload = () => {
-    console.log(props.data.filepath);
     axios
-      .get(`/api/exam/${props.data.filepath}`, { responseType: "blob" })
+      .get(`/api/exam/${props.data.filepath.replace("../", "")}`, {
+        responseType: "blob",
+      })
       .then((res) => {
         download(res.data, props.data.filename, props.data.filetype);
-      }).catch(err => {
+      })
+      .catch((err) => {
         console.log(err);
         alert("파일이 존재 하지 않습니다.");
-      })
+      });
   };
 
   return (

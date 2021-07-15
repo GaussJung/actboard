@@ -10,7 +10,8 @@ export const LoginPage = () => {
 
   // 로그인 프로세스 실행
   const LoginProcess = () =>{
-    axios.post('/loginprocess',{
+    console.log(userId, userPw)
+    axios.post('/api/user/loginprocess',{
       userid : userId,
       userpw : userPw
     }).then((res) => {

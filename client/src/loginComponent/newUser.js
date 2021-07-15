@@ -34,7 +34,7 @@ export const NewUser = () => {
       idCheck.test(newUserIdVal) === true
     ) {
       const useId = axios
-        .post("/getUserId", {
+        .post("/api/user/getUserId", {
           id: newUserIdVal,
         })
         .then((res) => {
@@ -59,7 +59,7 @@ export const NewUser = () => {
     // 조건에 비교한뒤 통과하면 회원 생성
     if (CheckData(data, samePw)) {
       if (completeId) {
-        axios.post("/newUser", {
+        axios.post("/api/user/newUser", {
           data: data,
         }).then(res => {
             if(res.status === 200){

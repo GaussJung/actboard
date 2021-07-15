@@ -54,6 +54,7 @@ app.post('/newUser', (req,res) => {
 
 // 로그인을 이뤄주는 경로
 app.post('/loginprocess', async (req, res) => {
+    console.log(req.body)
     const selectSqlbody = "SELECT * FROM react_user_list WHERE userid=? AND passwd = HEX(AES_ENCRYPT( ? , concat('soy',?)))";
     let paramsVal = [req.body.userid, req.body.userpw, req.body.userid];
 

@@ -8,26 +8,30 @@ const app = express();
 const session = require('express-session'); //session(세션) 사용
 const cors = require('cors');   // cors(proxy 방지)사용
 
+// 로그인 세션 설정
+app.use(session({
+  key: 'sid',
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+      maxAge: 24000 * 60 * 60 // 쿠키 유효기간 24시간
+  }
+}));
+
+app.use(cors());
+app.use(express.json())
+app.use(express.urlencoded({extended: false}))
+
 const examRouter = require("./routes/exam"); // 사용자 질문,답변 페이지
 const userRouter = require("./routes/user"); // 사용자 질문,답변 페이지
 
 app.use("/api/exam", examRouter); // 시험 목록, 시험등록 등 라우터
 app.use("/api/user", userRouter); // 사용자 로그인, 회원가입, 로그아웃, 목록 라우터
 
-app.use(cors({origin : "http://localhost:5000"}));
-app.use(express.json())
-app.use(express.urlencoded({extended: false}))
 
-// 로그인 세션 설정
-app.use(session({
-    key: 'sid',
-    secret: 'secret',
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-        maxAge: 24000 * 60 * 60 // 쿠키 유효기간 24시간
-    }
-}));
+
+
 
 // ============================================== F30. API엔진 SWAGGER설정 ========================================== 
 // 주의 : 아래 설정은 app listen이 있기 전에 진행! 

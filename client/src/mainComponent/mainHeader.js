@@ -13,7 +13,7 @@ const MainHeader = (props) => {
   const Logout = () => {
     let logounCheck = window.confirm("로그아웃 하시겠습니까?");
     if (logounCheck) {
-      axios.get("/user/logoutprocess").then((res) => {
+      axios.get("/api/user/logoutprocess").then((res) => {
         alert("로그아웃 완료.");
         document.location.reload();
       });
