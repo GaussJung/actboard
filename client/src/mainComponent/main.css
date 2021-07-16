@@ -113,21 +113,45 @@ body::-webkit-scrollbar {
 
 /* 모달 제목 */
 .modalTitle{
-  text-align: center;
+  display: flex;
+  flex-direction: row;
   padding: 10px;
+}
+
+.modalTitleText{
+  width: 97%;
+  text-align: center;
+}
+
+.modalTitleExit{
+  padding: 0 3px;
+  cursor: pointer;
 }
 
 /* 모달 내용 정보 설명 영역 */
 .modataInfo, .modalCotent{
   display: flex;
   flex-direction: row;
-  padding: 5px 0 0;
+  padding: 5px 0 5px;
 }
 
 /* 모달 내용 정보 설명  */
 .modataInfo h4, .modalCotent h4{
   padding: 0 10px;
   width: 33%;
+}
+
+/* 모달 페이지 영역 */
+.modalPageBtnArea{
+  max-width: 400px;
+  width: 100%;
+  position: absolute;
+  bottom : 2%;
+  text-align: center;
+}
+
+.modalPageBtnArea .pageBtn{
+
 }
 
 /* 시험 조회 목록 영역 */
@@ -193,4 +217,17 @@ button {
 .noneData {
   text-align: center;
   padding: 30px;
+}
+
+/* 시험 목록 페이지 버튼 영역 */
+.pageNumBtnArea{
+  text-align: center;
+}
+
+/* 페이지 버튼 */
+.pageBtn, .modalPageBtn{
+  border: none;
+  width: 30px;
+  margin: 5px;
+  height: 30px;
 }

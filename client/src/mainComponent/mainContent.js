@@ -4,6 +4,8 @@ import download from "downloadjs";
 import { Link } from "react-router-dom";
 
 const MainContent = (props) => {
+  
+
   // 로그인이 안되어있을경우 실행
   const AlertLogin = () => {
     alert("로그인후 이용 가능합니다.");
@@ -24,7 +26,6 @@ const MainContent = (props) => {
         alert("파일이 존재 하지 않습니다.");
       });
   };
-
   return (
     <>
       <div className="listContentArea">

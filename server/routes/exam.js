@@ -24,6 +24,8 @@ const upload = multer({
 // 메인화면
 app.get('/list', (req, res) => {
 
+    
+
     let selectSqlBody = "SELECT * FROM react_enrollment";
 
     let selectSqlBody2 = "SELECT DISTINCT subject FROM react_enrollment";

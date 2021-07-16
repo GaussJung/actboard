@@ -3,7 +3,7 @@ import axios from "axios";
 // 목록화면의 데이터 수집
 export const GetDbData = async () => {
   const dbList = await axios
-    .get("/api/exam/list")
+    .get("/api/exam/list/")
     .then((res) => res.data);
 
   return dbList;

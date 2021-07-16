@@ -1,24 +1,28 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import MainHeader from "./mainHeader";
 import MainSearchArea from "./mainSearchArea";
 import MainContent from "./mainContent";
+import UserListModal from "./userListModal";
 import { GetDbData, CompleteLogin, GetUserList } from "../api";
 import axios from "axios";
 import "../mainComponent/main.css";
 
 export default function Main() {
-  const [data, setData] = useState([]); // db에서 받아올 데이터
+  
+  const [examData, setExamData] = useState([]); // db에서 받아올 데이터
   const [userList, setUserList] = useState([]); // db에서 받아올 사용자 목록
-  const [displayChange, setDisPlayChange] = useState("none"); // 스타일 변경 변수
   const [loading, setLoading] = useState(false); // db에서 데이터를 받을동안 로딩
   const [loginStatus, setLoginStatus] = useState(); // 사용자가 로그인을 하였는지 확인
+  const [pageNum, setPageNum] = useState(1);
+  const [showExamLen, setShowExamLen] = useState(10);
 
+  const modalEl = useRef();
 
   // db불러오기
   async function DbList() {
     const datas = await GetDbData();
     const userData = await GetUserList();
-    setData(datas);
+    setExamData(datas);
     setUserList(userData);
     const userInfo = await CompleteLogin();
     if (userInfo === "") {
@@ -29,6 +33,7 @@ export default function Main() {
     setLoading(true);
   }
 
+
   // 검색하여 목록 교체
   const SearchList = (gradeVal, subjectVal, teacherVal) => {
     // query 조건
@@ -37,9 +42,10 @@ export default function Main() {
       .post(
         `/api/exam/list?grade=${gradeVal}&subject=${subjectVal}&teacher=${teacherVal}`
       )
-      .then((res) => setData(res.data));
+      .then((res) => setExamData(res.data));
   };
 
+  // 모달 띄우는 창
   const ShowModal = () => {
     let modalDisplay = document.getElementsByClassName("userListModalArea")[0];
 
@@ -53,48 +59,77 @@ export default function Main() {
     }
   };
 
+  const ShowExamList = () => {
+    let examInfoList = [];
+    for (
+      let cnt = pageNum * showExamLen - showExamLen;
+      cnt < pageNum * showExamLen;
+      cnt++
+    ) {
+      if (cnt >= examData.examListData.length) {
+        cnt++;
+      } else {
+        examInfoList.push(
+          <MainContent
+            key={examData.examListData[cnt].examid}
+            data={examData.examListData[cnt]}
+            loginStatus={loginStatus}
+          />
+        );
+      }
+    }
+    return examInfoList;
+  };
+
+
+  const ChangeBtnColor = () => {
+    const getPageBtn = document.getElementsByClassName("pageBtn");
+    for(let i = 0; i < getPageBtn.length ; i++){
+      
+      if(parseInt(getPageBtn[i].value) === pageNum){
+        getPageBtn[i].style.backgroundColor = "#FA8282";
+      }else{
+        getPageBtn[i].style.backgroundColor = "#efefef";
+      }
+    }
+  }
+
+  const GetPageNum = () => {
+    let pageNumBtn = [];
+    for (
+      let cnt = 1;
+      cnt <= Math.ceil(examData.examListData.length / showExamLen);
+      cnt++
+    ) {
+        pageNumBtn.push(
+          <button
+            key={cnt}
+            value={cnt}
+            onClick={(async (e) => (
+                 setPageNum(parseInt(e.target.value))
+            ))}
+            className="pageBtn"
+          >
+            {cnt}
+          </button>
+        )}
+        return pageNumBtn;
+      }
+  
+      
+
   useEffect(() => {
     DbList();
+     ChangeBtnColor();
   }, []);
 
+  ChangeBtnColor();
   return (
     <>
       {loading === true ? (
         <>
-          <div
-            className={"userListModalArea"}
-            onClick={(e) => {
-              ShowModal();
-            }}
-            onKeyDown={(e) => {
-              console.log(e.key);
-            }}
-          >
-            <div className="userListModal">
-              <h3 className="modalTitle">사용자 목록</h3>
-              <hr></hr>
-              <div className="modalContentArea">
-                <div className="modataInfo">
-                  <h4>No.</h4>
-                  <h4>이름</h4>
-                  <h4>생성일자</h4>
-                </div>
-                <hr></hr>
-                {userList.length !== 0 ? (
-                  <>
-                    {userList.map((x, i) => (
-                      <div className="modalCotent" key={i}>
-                        <h4>{i + 1}</h4>
-                        <h4>{x.name}</h4>
-                        <h4>{x.createdate}</h4>
-                      </div>
-                    ))}
-                  </>
-                ) : (
-                  <h6>사용자가 없습니다.</h6>
-                )}
-              </div>
-            </div>
+          <div className="modalComponent">
+            <UserListModal ShowModal={ShowModal} userList={userList}/>
           </div>
           <div className="headerContainer">
             <MainHeader loginInfo={loginStatus} />
@@ -102,19 +137,15 @@ export default function Main() {
 
           <div className="container">
             <MainSearchArea
-              subject={data.subjectData}
-              teacher={data.teacherData}
+              subject={examData.subjectData}
+              teacher={examData.teacherData}
               search={SearchList}
               modal={ShowModal}
             />
-            {data.examListData.map((item, cnt) => (
-              <MainContent
-                key={item.examid}
-                data={item}
-                loginStatus={loginStatus}
-              />
-            ))}
+            {ShowExamList()}
+           
           </div>
+          <div className="pageNumBtnArea">{GetPageNum()}</div>
         </>
       ) : (
         "loading"
