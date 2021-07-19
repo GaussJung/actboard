@@ -1,0 +1,3 @@
+# package.json을 변경되도 깃에 추가 안되게 설정
+server/package-lock.json
+server/package.json
