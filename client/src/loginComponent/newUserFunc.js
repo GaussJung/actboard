@@ -2,7 +2,6 @@
 export const CheckData = (data, samePw) => {
     if (data !== undefined) {
       let pwCheck = /^(?=.*[0-9])[a-zA-Z0-9!@#$%^&*]{8,30}$/; // pw 조건   (영어 + 숫자 8자~30자);
-
       let tmpVal, tmpVal2;
 
       // 이름 조건
@@ -40,7 +39,7 @@ export const CheckData = (data, samePw) => {
 
       return true;
     }else{
-        return alert("양식에 맞게 하세요!")
+        return alert("양식에 맞게 하세요!");
     };
   };
 

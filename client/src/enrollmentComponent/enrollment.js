@@ -8,11 +8,12 @@ window.$ = window.jQuery = jQuery;
 
 const Enrollment = () => {
 
-  const [data, setData] = useState({});
-  const [file, setFile] = useState("");
-  const [userInfo, setUserInfo] = useState();
-  const [loginStatus,setLoginStatus] = useState(false);
+  const [data, setData] = useState({}); // 사용자가 입력한 데이터 오브젝트
+  const [file, setFile] = useState(""); // 사용자가 올린 파일
+  const [userInfo, setUserInfo] = useState(); // 사용자의 정보
+  const [loginStatus,setLoginStatus] = useState(false); // 사용자 로그인 여부 판단
 
+  // 사용자가 입력한 데이터 저장
   const GetValue = (event) => {
     const target = event.target;
     const name = target.name;
@@ -21,9 +22,9 @@ const Enrollment = () => {
       ...data,
       [name]: value,
     });
-    console.log(data);
   };
 
+  // 사용자가 로그인 하였는지 확인
   const GetLoginUser = async () =>{
       const userData = await CompleteLogin();
       setUserInfo(userData);
@@ -36,6 +37,7 @@ const Enrollment = () => {
       };
   };
 
+  // 시험 데이터 서버 전송
   const SendData = () => {
     if (CheckData(data)) {
       if (file === undefined || file === '' || file === null) {
@@ -63,6 +65,7 @@ const Enrollment = () => {
           data: formData,
           success: function (examid) {
             localStorage.setItem("enrollment", JSON.stringify(data));
+            window.sessionStorage.clear();
             document.location.href = '/';
           },
         });

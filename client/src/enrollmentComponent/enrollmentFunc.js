@@ -20,7 +20,6 @@ export const CheckData = (data) => {
   };
 
   // 시험과목 조건
-
   if (
     data.subject === "" ||
     data.subject === undefined ||

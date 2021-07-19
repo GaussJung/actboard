@@ -5,8 +5,8 @@ window.$ = window.jQuery = jQuery;
 
 const EnrollmentContent = (props) => {
 
-    const [grade, setGrade] = useState("");
-    const [subject, setSubject] = useState();
+    const [grade, setGrade] = useState(""); // 학년
+    const [subject, setSubject] = useState(); // 과목
 
   return (
       <>

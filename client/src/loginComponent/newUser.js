@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import {CheckData} from "./newUserFunc";
+import { CheckData } from "./newUserFunc";
 import "./newUser.css";
 
 export const NewUser = () => {
@@ -9,6 +9,7 @@ export const NewUser = () => {
   const [grade, setGrade] = useState();
   const [completeId, setCompletId] = useState(false);
 
+  // 사용자가 입력한 값 오브젝트로 넣음
   const GetValue = (evt) => {
     let name = evt.target.name;
     let getVal = evt.target.value;
@@ -19,13 +20,11 @@ export const NewUser = () => {
     console.log(data);
   };
 
+  // 입력한 아이디 중복체크
   const SameIdCheck = () => {
     const newUserId = document.getElementById("newUserId");
     let idCheck = /^[A-Za-z]{1}[A-Za-z0-9!@#$%^&*]{6,19}$/;
-
     let newUserIdVal = newUserId.value;
-
-    console.log(newUserIdVal);
 
     if (
       newUserIdVal !== "" &&
@@ -33,7 +32,7 @@ export const NewUser = () => {
       newUserIdVal !== undefined &&
       idCheck.test(newUserIdVal) === true
     ) {
-      const useId = axios
+      axios
         .post("/api/user/getUserId", {
           id: newUserIdVal,
         })
@@ -44,7 +43,7 @@ export const NewUser = () => {
             ) {
               newUserId.disabled = true;
               setCompletId(true);
-            }
+            };
           } else {
             alert("중복된 아이디 입니다.");
           };
@@ -59,21 +58,23 @@ export const NewUser = () => {
     // 조건에 비교한뒤 통과하면 회원 생성
     if (CheckData(data, samePw)) {
       if (completeId) {
-        axios.post("/api/user/newUser", {
-          data: data,
-        }).then(res => {
-            if(res.status === 200){
-                alert("회원가입 완료!");
-                document.location.replace('/login');
-            }else{
-                alert("회원가입 실패..");
-            };
-        });
-        };
-      } else {
-        alert("중복 체크를 해주세요.");
+        axios
+          .post("/api/user/newUser", {
+            data: data,
+          })
+          .then((res) => {
+            if (res.status === 200) {
+              alert("회원가입 완료!");
+              document.location.replace("/login");
+            } else {
+              alert("회원가입 실패..");
+            }
+          });
       };
+    } else {
+      alert("중복 체크를 해주세요.");
     };
+  };
 
   return (
     <div class="newUSerContainer">

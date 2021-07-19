@@ -17,7 +17,7 @@ const MainHeader = (props) => {
         alert("로그아웃 완료.");
         document.location.reload();
       });
-    }
+    };
   };
 
   return (

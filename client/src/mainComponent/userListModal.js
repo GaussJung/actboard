@@ -1,22 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
 
 const UserListModal = (props) => {
-  const [modalPageNum, setModalPageNum] = useState(1);
-  const [showUserLen, setShowUserLen] = useState(10);
-  const [isOpen, setOpen] = useState(false);
-
-  const modalEl = useRef();
-
-  const handleClickOutside = ({ target }) => {
-    if (isOpen && !modalEl.current.contains(target)) props.ShowModal();
-  };
-
-  useEffect(() => {
-    window.addEventListener("click", handleClickOutside);
-    return () => {
-      window.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
+  const [modalPageNum, setModalPageNum] = useState(1);  // 모달 페이지 번호
+  const [showUserLen, setShowUserLen] = useState(10);   // 한 페이지당 사용자정보 개수
 
   // 사용자 모달의 출력되는 목록 개수 조절
   const ShowUserList = () => {
@@ -36,11 +22,12 @@ const UserListModal = (props) => {
             <h4>{props.userList[cnt].createdate}</h4>
           </div>
         );
-      }
-    }
+      };
+    };
     return examInfoList;
   };
 
+  // 해당 페이지 색 강조
   const ChangeBtnColor = () => {
     const getPageBtn = document.getElementsByClassName("modalPageBtn");
     for(let i = 0; i < getPageBtn.length ; i++){
@@ -49,9 +36,9 @@ const UserListModal = (props) => {
         getPageBtn[i].style.backgroundColor = "#FA8282";
       }else{
         getPageBtn[i].style.backgroundColor = "#efefef";
-      }
-    }
-  }
+      };
+    };
+  };
 
   // 사용자 모달의 페이지 버튼
   const GetUsermodalPageNum = () => {
@@ -73,19 +60,27 @@ const UserListModal = (props) => {
           {cnt + 1}
         </button>
       );
-    }
+    };
     return modalPageNumBtn;
   };
 
-  ChangeBtnColor();
+  
 
-  window.addEventListener('click', (evt) => {
-    console.log(modalEl);
-    if(evt.target == modalEl[0]){
-        props.ShowModal();
-    }
-  })
+  // 모달 창 밖 클릭시 닫기
+  const ModalOff = () => {
+    window.addEventListener('click', (evt) => {
+      const modalEl = document.getElementsByClassName('userListModalArea');
+      if(evt.target == modalEl[0]){
+          props.ShowModal();
+      };
+    });
+  };
 
+  useEffect(() => {
+    ModalOff();
+    ChangeBtnColor();
+  });
+  
   return (
     <>
       <div className={"userListModalArea"}>

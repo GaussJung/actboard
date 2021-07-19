@@ -1,11 +1,9 @@
 import axios from "axios";
 import React from "react";
 import download from "downloadjs";
-import { Link } from "react-router-dom";
 
 const MainContent = (props) => {
   
-
   // 로그인이 안되어있을경우 실행
   const AlertLogin = () => {
     alert("로그인후 이용 가능합니다.");

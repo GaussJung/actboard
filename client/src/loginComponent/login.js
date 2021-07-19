@@ -5,8 +5,8 @@ import './login.css'
 
 export const LoginPage = () => {
 
-  const [userId, setUserId] = useState('');
-  const [userPw, setUserPw] = useState('');
+  const [userId, setUserId] = useState(''); // 사용자 입력 아이디
+  const [userPw, setUserPw] = useState(''); // 사용자 입력 비밀번호
 
   // 로그인 프로세스 실행
   const LoginProcess = () =>{
