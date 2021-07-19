@@ -23,5 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 
-#심볼링 링크 dir
-examFile
+#package.json도 추가 안하게 저장
+package.json
+package-lock.json

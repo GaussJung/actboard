@@ -1,5 +1,10 @@
+# package.json을 변경되도 깃에 추가 안되게 설정
 client/package.json
+client/package-lock.json
 server/package-lock.json
+server/package.json
+
+# node_modoules 를 변경해도 깃에 추가 안되게 서정
 server/node_modules/connect-redis/.eslintrc
 server/node_modules/connect-redis/.prettierrc
 server/node_modules/connect-redis/index.js
@@ -55,4 +60,6 @@ server/node_modules/redis-parser/LICENSE
 server/node_modules/redis-parser/package.json
 server/node_modules/redis-parser/README.md
 server/node_modules/redis-parser/lib/parser.js
-examFile/3학년_영어_1단원_actboard-b00b3dd1b2578d7136089764739be7c684f771eb.zip
+
+# 시험 파일이 올라와도 git에 추가 안함
+examFile/
