@@ -43,6 +43,7 @@ export default function Main() {
         `/api/exam/list?grade=${gradeVal}&subject=${subjectVal}&teacher=${teacherVal}`
       )
       .then((res) => setExamData(res.data));
+      setPageNum(1);
   };
 
   // 모달 띄우는 창

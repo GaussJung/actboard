@@ -2,7 +2,8 @@ const express = require('express');
 const app = express.Router();
 const multer = require('multer');   // multer(파일 업로드) 사용.
 
-const dbConnection = require('../database/databases');
+const dbConnection = require('../database/databases'); // database연결 
+
 // 파일 업로드 Storage
 const uploadStorage = multer.diskStorage({
     destination: (req, file, cb) => {
@@ -24,13 +25,11 @@ const upload = multer({
 // 메인화면
 app.get('/list', (req, res) => {
 
-    
+    let selectSqlBody = "SELECT * FROM react_enrollment"; // 시험 목록 검색
+    let selectSqlBody2 = "SELECT DISTINCT subject FROM react_enrollment"; // 등록된 시험중 과목만 중복제거 검색
+    let selectSqlBody3 = "SELECT DISTINCT name FROM react_enrollment"; // 등록된 시험중 이름만 중복제거 검색
 
-    let selectSqlBody = "SELECT * FROM react_enrollment";
-
-    let selectSqlBody2 = "SELECT DISTINCT subject FROM react_enrollment";
-    let selectSqlBody3 = "SELECT DISTINCT name FROM react_enrollment";
-
+    // database query문 입력후 실행
     dbConnection.query(selectSqlBody, (err, examListData) => {
         if (err) {
             console.log(err);
@@ -44,7 +43,7 @@ app.get('/list', (req, res) => {
                         if (err2) {
                             console.log(err2);
                         } else {
-                            // console.log(req.params.page, examListData.length-1,);
+                            // 검색한 시험목록, 과목, 이름의 데이터를 전송
                             res.send({
                                 examListData, subjectData, teacherData
                             })
@@ -68,6 +67,7 @@ app.post('/list', (req, res) => {
     let subject = req.query.subject;
     let teacher = req.query.teacher;
 
+    // 검색한 query데이터를 비교하여 query문을 지정하여 준다. 
     if (grade === undefined || grade === '' || grade === null) {
         if (subject === undefined || subject === '' || subject === null) {
             if (teacher === undefined || teacher === '' || teacher === null) {
@@ -122,7 +122,6 @@ app.post('/list', (req, res) => {
                         if (err2) {
                             console.log(err2);
                         } else {
-                            // console.log(req.params.page, examListData.length-1,);
                             res.send({
                                 examListData, subjectData, teacherData
                             })
@@ -166,9 +165,10 @@ app.post('/enrollment',upload, (req,res) =>{
         };
     });
 });
+
 // 저장된 파일 다운로드
 app.get('/examFile/:path',(req,res) => {
     res.download("../examFile/"+req.params.path);
-})
+});
 
 module.exports = app;

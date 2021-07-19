@@ -29,6 +29,8 @@ const Enrollment = () => {
       setUserInfo(userData);
       if(userData === ''){
         setLoginStatus(false);
+        alert("로그인후 이용 부탁드립니다.");
+        document.location.href = "/login";
       }else{
         setLoginStatus(true);
       };

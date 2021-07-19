@@ -7,13 +7,13 @@ const express = require('express');
 const app = express();
 const cors = require('cors');   // cors(proxy 방지)사용
 
-// 로그인 세션 설정
-const redis = require("redis");
-const session = require("express-session");
+const redis = require("redis"); //resis 서버 사용
+const session = require("express-session"); // 세션 사용
 
-let RedisStore = require("connect-redis")(session);
+let RedisStore = require("connect-redis")(session); // 세션을 redis의 저장
 let redisClient = redis.createClient();
 
+// 로그인 세션 
 app.use(
   session({
     store: new RedisStore({ client: redisClient }),
@@ -86,7 +86,7 @@ const swaggerSpec = swaggerJSDoc(swagOptions);
 // use swagger-Ui-express for your app documentation endpoint
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-
+// 8000번 포트로 열어 준다.
 const port = 8000;
 app.listen(port,()=> console.log(`Thank you join ${port}!`));
 
