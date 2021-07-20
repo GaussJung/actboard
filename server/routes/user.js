@@ -11,6 +11,7 @@ app.post('/userList',(req, res) => {
         if(err){
             res.send(false)
         }else{
+            console.log(JSON.stringify(userList))
             res.send(JSON.parse(userList));
         };
     });
