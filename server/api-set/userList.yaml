@@ -7,6 +7,7 @@ paths:
       description: View Member Post
       parameters:
       - in: body
+        type: object
         name: data
         description: json object to request member
         required: false
