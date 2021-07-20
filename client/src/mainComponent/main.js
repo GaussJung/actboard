@@ -116,10 +116,10 @@ export default function Main() {
     };
   };
 
-  useEffect(() => {
-   
+  useEffect(() => {  
     ChangeBtnColor()
   },ChangeBtnColor());
+
   useMemo(() =>  GetDbList(), GetDbData());
   return (
     <>
@@ -138,6 +138,7 @@ export default function Main() {
               teacher={examData.teacherData}
               search={SearchList}
               modal={ShowModal}
+              userList = {userList}
             />
             {ShowExamList()}
           </div>

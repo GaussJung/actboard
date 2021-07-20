@@ -36,10 +36,6 @@ const userRouter = require("./routes/user"); // 사용자 질문,답변 페이�
 app.use("/api/exam", examRouter); // 시험 목록, 시험등록 등 라우터
 app.use("/api/user", userRouter); // 사용자 로그인, 회원가입, 로그아웃, 목록 라우터
 
-
-
-
-
 // ============================================== F30. API엔진 SWAGGER설정 ========================================== 
 // 주의 : 아래 설정은 app listen이 있기 전에 진행! 
 
@@ -64,7 +60,6 @@ const swaggerDefinition = {
         url: 'https://opensource.org/licenses/MIT'
       }
   },
-  //host: 'myapp.nuriblock.com:80', // the host or url of the app
   host: 'utdev.soymlops.com:8000', // the host or url of the app
   basePath: '/api', // the basepath of your endpoint
   schemes:'http',   // SSL접속 아닌 기본 접속 

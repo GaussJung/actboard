@@ -59,7 +59,7 @@ body::-webkit-scrollbar {
 .searchSelecter,
 .searchBtnArea {
   width: 20%;
-  padding: 20px;
+  padding: 20px 10px;
 }
 
 /* 시험 조회 버튼 */
@@ -71,7 +71,7 @@ body::-webkit-scrollbar {
 /* 사용자 목록 버튼 영역 */
 .searchUserBtn {
   width: 100%;
-  padding: 0 20px 0;
+  text-align: center;
   align-content: center;
 }
 

@@ -1,0 +1,25 @@
+---
+paths: 
+  "/user/userList":
+    get:
+      tags:
+      - userList
+      description: View Member Post
+      parameters:
+      - in: body
+        name: data
+        description: json object to request member
+        required: false
+        schema:
+          "$ref": "#/definitions/userList"
+      produces:
+      - application/json
+      responses:
+        '200':
+          success: Whether or not to success
+          count: member count to be requested
+          chcode: application api process code
+          rowset: member row from database
+definitions:
+  userList:
+  

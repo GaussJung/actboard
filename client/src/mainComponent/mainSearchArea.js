@@ -86,7 +86,7 @@ const MainSearchArea = (props) => {
               props.modal();
             }}
           >
-            사용자 목록
+            사용자 목록 {`(${props.userList.length})`}
           </button>
         </div>
       </div>
