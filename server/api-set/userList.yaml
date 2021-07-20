@@ -26,4 +26,4 @@ definitions:
       - list
       properties:
         list:
-          type: string
+          type: json
