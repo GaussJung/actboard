@@ -1,9 +1,9 @@
 ---
 paths: 
-  "exam/list":
+  "/exam/list":
     post:
       tags:
-      - exam
+      - examList
       description: View Member get
       parameters:
       - name: grade
@@ -34,7 +34,7 @@ paths:
           rowset: member row from database
     get:
       tags:
-      - exam
+      - examList
       description: View Member Post
       parameters:
       - in: body
