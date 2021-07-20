@@ -26,7 +26,15 @@ app.use(
   })
 );
 
-app.use(cors());
+const corsOptions = {
+  origin: "*",
+  credentials: true,
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.options("*", cors(corsOptions));
+app.use(cors(corsOptions));
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
