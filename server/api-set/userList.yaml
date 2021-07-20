@@ -23,7 +23,7 @@ paths:
 definitions:
   userList:
     required:
-      - list
+      - users
       properties:
-        list:
-          type: json
+        users:
+          type: string
