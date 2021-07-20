@@ -4,7 +4,7 @@ const app = express.Router();
 const dbConnection = require('../database/databases');  // database접속
 
 // 사용자 목록을 가져온다.
-app.get('/userList',(req, res) => {
+app.post('/userList',(req, res) => {
     let selectSqlBody = "SELECT userno, name, createdate FROM react_user_list"; // 사용자 목록을 검색하여 사용자번호, 이름, 생성일자를 검색
 
     dbConnection.query(selectSqlBody,(err,userList) => {

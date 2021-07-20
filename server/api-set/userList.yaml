@@ -1,7 +1,7 @@
 ---
 paths: 
   "/user/userList":
-    get:
+    post:
       tags:
       - userList
       description: View Member Post
