@@ -33,8 +33,8 @@ app.use(express.urlencoded({extended: false}))
 const examRouter = require("./routes/exam"); // 사용자 질문,답변 페이지
 const userRouter = require("./routes/user"); // 사용자 질문,답변 페이지
 
-app.use("/api/exam", examRouter); // 시험 목록, 시험등록 등 라우터
-app.use("/api/user", userRouter); // 사용자 로그인, 회원가입, 로그아웃, 목록 라우터
+app.use("api/exam", examRouter); // 시험 목록, 시험등록 등 라우터
+app.use("api/user", userRouter); // 사용자 로그인, 회원가입, 로그아웃, 목록 라우터
 
 // ============================================== F30. API엔진 SWAGGER설정 ========================================== 
 // 주의 : 아래 설정은 app listen이 있기 전에 진행! 
