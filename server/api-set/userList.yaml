@@ -22,4 +22,8 @@ paths:
           rowset: member row from database
 definitions:
   userList:
-  
+    required:
+      - list
+      properties:
+        list:
+          type: string
