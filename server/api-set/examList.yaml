@@ -1,6 +1,6 @@
 ---
 paths: 
-  "/exam/list":
+  "exam/list":
     post:
       tags:
       - exam
