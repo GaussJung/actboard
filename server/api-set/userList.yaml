@@ -20,3 +20,6 @@ paths:
           count: member count to be requested
           chcode: application api process code
           rowset: member row from database
+definitions:
+  userList:
+      properties:
