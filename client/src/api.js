@@ -11,7 +11,7 @@ export const GetDbData = async () => {
 
 // 사용자 목록 데이터
 export const GetUserList = async () => {
-  const dbList = await axios.post("/api/user/userList").then((res) => JSON.parse(res.data));
+  const dbList = await axios.post("/api/user/userList").then((res) => res.data);
 
   return dbList;
 };
