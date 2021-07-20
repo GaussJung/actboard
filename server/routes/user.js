@@ -11,7 +11,7 @@ app.post('/userList',(req, res) => {
         if(err){
             res.send(false)
         }else{
-            res.send(userList);
+            res.send(JSON.parse(userList));
         };
     });
 });
