@@ -61,7 +61,7 @@ const swaggerDefinition = {
       }
   },
   host: 'utdev.soymlops.com:8000', // the host or url of the app
-  basePath: 'api', // the basepath of your endpoint
+  basePath: '/api', // the basepath of your endpoint
   schemes:'http',   // SSL접속 아닌 기본 접속 
   consumes:'application/json',
   produces: 'application/json'
