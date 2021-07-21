@@ -70,6 +70,7 @@ export default function Main() {
         examInfoList.push(
           <MainContent
             key={examData.examListData[cnt].examid}
+            examListNo={cnt}
             data={examData.examListData[cnt]}
             loginStatus={loginStatus}
           />
@@ -120,7 +121,7 @@ export default function Main() {
     ChangeBtnColor()
   },ChangeBtnColor());
 
-  useMemo(() =>  GetDbList(), GetDbData());
+  useMemo(() =>  GetDbList(), [GetDbData()]);
   return (
     <>
       {loading === true ? (

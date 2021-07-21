@@ -22,3 +22,9 @@ export const CompleteLogin = async () => {
 
   return dbList;
 };
+
+// 로그인상태일 경우 정보 저장
+export const ExamDetailData = async (examid) => {
+  const dbList = await axios.get("/api/exam/detail/"+examid).then((res) => res.data);
+  return dbList;
+};

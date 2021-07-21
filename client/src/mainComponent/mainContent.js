@@ -1,9 +1,9 @@
 import axios from "axios";
 import React from "react";
+import { Link } from "react-router-dom";
 import download from "downloadjs";
 
 const MainContent = (props) => {
-  
   // 로그인이 안되어있을경우 실행
   const AlertLogin = () => {
     alert("로그인후 이용 가능합니다.");
@@ -29,10 +29,10 @@ const MainContent = (props) => {
       <div className="listContentArea">
         <div className="examContentArea">
           <div className="examContentTextArea">
-            <h4 className="examContentId">{props.data.examid}</h4>
+            <h4 className="examContentId">{props.examListNo + 1}</h4>
             <h4 className="examContentText">
-              {props.data.name} - {props.data.grade}학년 - {props.data.subject}{" "}
-              - {props.data.content}단원
+              {props.data.name} - {props.data.grade}학년 - {props.data.subject}-{" "}
+              {props.data.content}단원
               <br></br>
               <span className="examContent">{props.data.contentheader}</span>
             </h4>
@@ -40,6 +40,9 @@ const MainContent = (props) => {
           <div className="examContentDownloadArea">
             {props.loginStatus ? (
               <>
+              <Link to={`/examDetail/${props.data.examid}`}>
+                <button className="examContentDownload">상세 정보</button>
+                </Link>
                 <button
                   className="examContentDownload"
                   onClick={(e) => FileDownload()}
@@ -49,6 +52,14 @@ const MainContent = (props) => {
               </>
             ) : (
               <>
+                <button
+                  className="examDetail"
+                  onClick={(e) => {
+                    AlertLogin();
+                  }}
+                >
+                  상세보기
+                </button>
                 <button
                   className="examContentDownload"
                   onClick={(e) => {

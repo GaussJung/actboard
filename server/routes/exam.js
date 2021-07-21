@@ -17,6 +17,9 @@ const uploadStorage = multer.diskStorage({
     }
 });
 
+const selectSql = "SELECT examid, name, grade, subject, content, contentheader, examheader, examquestion, "+
+                    "filename, filetype, filepath, `date`, sessionid, status, userid "
+
 // 파일 업로드
 const upload = multer({
     storage: uploadStorage
@@ -165,6 +168,20 @@ app.post('/enrollment',upload, (req,res) =>{
         };
     });
 });
+
+// 시험 상세 페이지
+app.get('/detail/:id',(req,res) => {
+    const selectSqlBody = selectSql + "FROM react_enrollment WHERE examid=?";
+
+    dbConnection.query(selectSqlBody,req.params.id,(err,data) => {
+        if(err){
+            console.log(err);
+            res.send(err);
+        }else{
+            res.send(data);
+        }
+    })
+})
 
 // 저장된 파일 다운로드
 app.get('/examFile/:path',(req,res) => {

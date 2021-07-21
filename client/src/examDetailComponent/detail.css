@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding : 0;
+}
+
+/* 게시물 상세 설명의 테두리 영역*/
+#container {
+    margin: 0 auto;
+    border: 1px solid black;
+    max-width: 1024px;
+    min-width: 300px;
+    padding: 15px;
+}
+
+/* 게시물의 제목의 영역*/
+#headerContent {
+    text-align: center;
+}
+
+/* 헤더의 목록가기 버튼 영역 */
+.goListPageArea{
+    text-align: right;
+  }
+
+/* 게시물의 고유ID 영역*/
+#headerBdId {
+    text-align: right;
+}
+
+
+/* 게시물의 상세 페이지에 버튼 영역*/
+#footerBtnArea {
+    display: flex;
+    flex-direction: row;
+}
+
+/* 게시물의 상세페이지에 수정하기 버튼 영역*/
+#updateButtonArea {
+    width: 50%;
+    text-align: left;
+}
+
+/* 게시물의 상세페이지에 삭제하기 버튼 영역*/
+#deleteButtonArea {
+    width: 50%;
+    text-align: right;
+}
+
+/* user의 신청확인 버튼 영역 */
+#confirmBtnArea {
+    width: 80%;
+    margin: 20px auto 0px;
+}
+
+/* user의 신청확인 버튼 */
+#confirmBtn {
+    width: 100%;
+}
+
+/* 상세 페이지 설명 영역 */
+.useGuide {
+    line-height: 170%;
+}
+
+/* 상세 페이지 설명 */
+.useGuide li {
+    text-align: left;
+    color: #1761af;
+    padding: 0;
+}
+
+/* 버튼 영역 */
+#footerBtnArea {
+    margin: 20px 0;
+}
+
+/* 버튼 영역의 버튼 */
+#footerBtnArea button {
+    width: 120px;
+}
+
+/* 상세 내용 모든 태그 */
+.entrollmentContent {
+    margin: 15px 0px;
+}
+
+.entrollmentContent p {
+    cursor: pointer;
+    text-decoration:underline;
+}
+
+/* 상세 내용의 텍스트 */
+.contentText {
+    color: #1761af;
+}
+
+/* 모든 버튼 */
+button{
+    cursor: pointer;
+}
