@@ -1,5 +1,14 @@
-const express = require('express');
-const app = express.Router();
+/*
+    id : EUR01,
+    name : ExamUserRouter,
+    date : 2021-07-26
+    version : 1.1v
+*/
+
+//----------------------------------------------------------------------------------------------------------------------------------------
+
+const express = require('express'); // express 사용
+const app = express.Router(); // express 라우터 사용
 
 const dbConnection = require('../database/databases');  // database접속
 
@@ -9,7 +18,7 @@ app.post('/userList',(req, res) => {
 
     dbConnection.query(selectSqlBody,(err,userList) => {
         if(err){
-            res.send(false)
+            res.send(false);
         }else{
             res.send(userList);
         };
@@ -22,7 +31,7 @@ app.post('/getUserId',(req,res) => {
     let selectSqlbody = "SELECT userid FROM react_user_list WHERE userid=?"; // 아이디를 검색
     dbConnection.query(selectSqlbody, req.body.id,(err,data) => {
         if(err){
-            res.send(err);
+            res.send("DBE001 = " + err);
         }else{
             // 검색한 결과가 있을 경우 아이디 사용 불가능을 나타내준다.
             if(data.length !== 0){
@@ -45,13 +54,12 @@ app.post('/newUser', (req,res) => {
 
     dbConnection.query(insertSqlbody, paramsVal, (err, get) => {
         if (err) {
-            console.log(err);
             res.status(500).send(err);
         } else {
             res.status(200).send("");
-        }
+        };
     });
-})
+});
 
 // 로그인을 이뤄주는 경로
 app.post('/loginprocess', async (req, res) => {
@@ -62,7 +70,6 @@ app.post('/loginprocess', async (req, res) => {
 
     dbConnection.query(selectSqlbody, paramsVal, async (err, get) => {
         if (err) {
-            console.log(err);
             res.status(500).send(false);
         } else {
             // 조회결과가 있을 경우 로그인 세션을 저장.
@@ -76,22 +83,22 @@ app.post('/loginprocess', async (req, res) => {
                 res.send(true);
             } else {
                 res.send(false);
-            }
+            };
         };
     });
 });
 
 // 로그인 세션 전달.
 app.get('/completelogin',(req,res) => {
-    res.send(req.session.user)
-})
+    res.send(req.session.user);
+});
 
 // 로그아웃을 이뤄주는 경로
 app.get('/logoutprocess', (req, res) => {
     req.session.destroy(err => {
         if (err) {
             console.log(err)
-        }
+        };
     });
     res.clearCookie('sid');
     res.send(true);

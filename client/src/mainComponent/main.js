@@ -58,7 +58,12 @@ export default function Main() {
 
   // 시험 목록을 지정한 개수만큼 출력
   const ShowExamList = () => {
+    console.log(examData.examListData.length)
+    
     let examInfoList = [];
+    if(examData.examListData.length === 0){
+      examInfoList.push(<h3 style={{textAlign:"center"}}>게시물이 없음</h3>)
+    }else{
     for (
       let cnt = pageNum * showExamLen - showExamLen;
       cnt < pageNum * showExamLen;
@@ -67,14 +72,16 @@ export default function Main() {
       if (cnt >= examData.examListData.length) {
         cnt++;
       } else {
-        examInfoList.push(
-          <MainContent
-            key={examData.examListData[cnt].examid}
-            examListNo={cnt}
-            data={examData.examListData[cnt]}
-            loginStatus={loginStatus}
-          />
-        );
+        
+          examInfoList.push(
+            <MainContent
+              key={examData.examListData[cnt].examid}
+              examListNo={cnt}
+              data={examData.examListData[cnt]}
+              loginStatus={loginStatus}
+            />
+          );
+        }
       };
     };
 
@@ -117,11 +124,14 @@ export default function Main() {
     };
   };
 
+  useMemo(() =>  {GetDbList()}, GetDbData());
+
   useEffect(() => {  
     ChangeBtnColor()
   },ChangeBtnColor());
 
-  useMemo(() =>  GetDbList(), [GetDbData()]);
+  
+  
   return (
     <>
       {loading === true ? (
